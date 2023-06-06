@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 02, 2023 at 08:55 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Host: localhost:3306
+-- Generation Time: Jun 06, 2023 at 03:54 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `data_barang` (
-  `id` int(11) NOT NULL,
-  `nama_barang` varchar(150) NOT NULL,
-  `deskripsi` text NOT NULL,
+  `id` int NOT NULL,
+  `nama_barang` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci NOT NULL,
   `harga` double NOT NULL,
-  `gambar` text NOT NULL,
-  `id_kategori` int(11) NOT NULL
+  `gambar` text COLLATE utf8mb4_general_ci NOT NULL,
+  `id_kategori` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -55,8 +55,8 @@ INSERT INTO `data_barang` (`id`, `nama_barang`, `deskripsi`, `harga`, `gambar`, 
 --
 
 CREATE TABLE `kategori` (
-  `id` int(11) NOT NULL,
-  `nama_kategori` varchar(150) NOT NULL
+  `id` int NOT NULL,
+  `nama_kategori` varchar(150) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -64,8 +64,64 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
-(1, 'Alat Tulis'),
 (2, 'Aksesoris');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_about`
+--
+
+CREATE TABLE `tb_about` (
+  `id` int NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `isi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tb_about`
+--
+
+INSERT INTO `tb_about` (`id`, `judul`, `isi`) VALUES
+(1, 'About Me', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam illum sunt, maiores libero voluptatum quo atque placeat ab aperiam amet itaque sint sit harum, error, tempora voluptates eveniet obcaecati 123000.\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_social`
+--
+
+CREATE TABLE `tb_social` (
+  `id` int NOT NULL,
+  `nama_sosmed` varchar(255) NOT NULL,
+  `icon` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tb_social`
+--
+
+INSERT INTO `tb_social` (`id`, `nama_sosmed`, `icon`) VALUES
+(1, 'Judul Social', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam illum sunt, maiores libero voluptatum quo atque placeat ab aperiam amet itaque sint sit harum, error, tempora voluptates eveniet obcaecati.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_twitter`
+--
+
+CREATE TABLE `tb_twitter` (
+  `id` int NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `isi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tb_twitter`
+--
+
+INSERT INTO `tb_twitter` (`id`, `judul`, `isi`) VALUES
+(1, 'Judul', 'Lorem ipsum dolor sit amet consectetur adipisicing...\r\n');
 
 --
 -- Indexes for dumped tables
@@ -84,6 +140,24 @@ ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_about`
+--
+ALTER TABLE `tb_about`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_social`
+--
+ALTER TABLE `tb_social`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_twitter`
+--
+ALTER TABLE `tb_twitter`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -91,13 +165,31 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `data_barang`
 --
 ALTER TABLE `data_barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_about`
+--
+ALTER TABLE `tb_about`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tb_social`
+--
+ALTER TABLE `tb_social`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_twitter`
+--
+ALTER TABLE `tb_twitter`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
